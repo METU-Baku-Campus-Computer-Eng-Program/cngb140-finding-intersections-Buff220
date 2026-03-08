@@ -1,0 +1,90 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: test2
+      id: test2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test2
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          4 1 2 3 4
+          2 2 3
+        expected-output: '2 3 '
+        comparison-method: exact
+        timeout: 10
+    - name: test3
+      id: test3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test3
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          5 1 2 2 3 3
+          4 2 2 4 5
+        expected-output: '2 '
+        comparison-method: exact
+        timeout: 10
+    - name: 'test4 '
+      id: test4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: 'test4 '
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          3 1 2 3
+          2 2 4
+        expected-output: '2 '
+        comparison-method: exact
+        timeout: 10
+    - name: test5
+      id: test5
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test5
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          3 10 20 30
+          3 30 40 50
+        expected-output: '30 '
+        comparison-method: exact
+        timeout: 10
+    - name: test1
+      id: test1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test1
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          3 7 8 9
+          3 7 8 9
+        expected-output: '7 8 9 '
+        comparison-method: exact
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST2_RESULTS: "${{steps.test2.outputs.result}}"
+        TEST3_RESULTS: "${{steps.test3.outputs.result}}"
+        TEST4_RESULTS: "${{steps.test4.outputs.result}}"
+        TEST5_RESULTS: "${{steps.test5.outputs.result}}"
+        TEST1_RESULTS: "${{steps.test1.outputs.result}}"
+      with:
+        runners: test2,test3,test4,test5,test1
