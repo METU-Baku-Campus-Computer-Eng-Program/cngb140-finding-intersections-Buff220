@@ -26,18 +26,18 @@ int main() {
     */
     //----------------------------------------------------------------//
     int c=0;
-    for(int i=0;i<n1;i++){
-        for(int j=0;j<n2;j++){
-            if(set1[i]==set2[j]){
+    for(int o=0;o<n1;o++){
+        for(int d=0;d<n2;d++){
+            if(set1[o]==set2[d]){
                 int S=1;
                 for(int k=0;k<c;k++){
-                    if(intersection[k]==set1[i]){
+                    if(intersection[k]==set1[o]){
                         S=0;
                         break;
                     }
                 }
                 if(S==1){
-                    intersection[c]=set1[i];
+                    intersection[c]=set1[o];
                     c++;
                 }
             }
