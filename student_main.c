@@ -25,8 +25,14 @@ int main() {
          3. Store the common numbers in the 'intersection' array.
     */
     //----------------------------------------------------------------//
-    {
-
+    int c=0;
+    for(int i=0;i<n1;i++){
+        for(int j=0;j<n2;j++){
+            if(set1[i]==set2[j]){
+                intersection[c]=set1[i];
+                c++;
+            }
+        }
     }
     //----------------------------------------------------------------//
     for(i = 0; i < count; i++) {
