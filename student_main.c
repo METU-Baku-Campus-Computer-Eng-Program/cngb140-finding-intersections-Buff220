@@ -30,7 +30,7 @@ int main() {
         for(int j=0;j<n2;j++){
             if(set1[i]==set2[j]){
                 int S=1;
-                for(int k=0;k<c+1;k++){
+                for(int k=0;k<c;k++){
                     if(intersection[k]==set1[i]){
                         S=0;
                         break;
