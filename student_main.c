@@ -35,13 +35,15 @@ int main() {
                         S=0;
                         break;
                     }
-                }if(S==1){
+                }
+                if(S==1){
                     intersection[c]=set1[i];
                     c++;
                 }
             }
         }
     }
+    count = c;
     //----------------------------------------------------------------//
     for(i = 0; i < count; i++) {
         printf("%d ", intersection[i]);
