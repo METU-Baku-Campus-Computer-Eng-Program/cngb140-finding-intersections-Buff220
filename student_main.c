@@ -29,8 +29,16 @@ int main() {
     for(int i=0;i<n1;i++){
         for(int j=0;j<n2;j++){
             if(set1[i]==set2[j]){
-                intersection[c]=set1[i];
-                c++;
+                int S=1;
+                for(int k=0;k<c+1;k++){
+                    if(intersection[k]==set1[i]){
+                        S=0;
+                        break;
+                    }
+                }if(S==1){
+                    intersection[c]=set1[i];
+                    c++;
+                }
             }
         }
     }
