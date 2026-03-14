@@ -78,6 +78,32 @@ jobs:
         expected-output: '7 8 9 '
         comparison-method: exact
         timeout: 10
+    - name: test6
+      id: test6
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test6
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          5 9 8 7 6 6
+          5 9 8 7 6 6
+        expected-output: '6 7 8 9 '
+        comparison-method: exact
+        timeout: 10
+    - name: test7
+      id: test7
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: test7
+        setup-command: gcc student_main.c -o solution
+        command: "./solution"
+        input: |-
+          9 9 8 2 7 3 1 2 8 4
+          6 2 5 1 2 3 9
+        expected-output: '1 2 3 9 '
+        comparison-method: exact
+        timeout: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -86,5 +112,7 @@ jobs:
         TEST4_RESULTS: "${{steps.test4.outputs.result}}"
         TEST5_RESULTS: "${{steps.test5.outputs.result}}"
         TEST1_RESULTS: "${{steps.test1.outputs.result}}"
+        TEST6_RESULTS: "${{steps.test6.outputs.result}}"
+        TEST7_RESULTS: "${{steps.test7.outputs.result}}"
       with:
-        runners: test2,test3,test4,test5,test1
+        runners: test2,test3,test4,test5,test1,test6,test7
